@@ -12,14 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170329141908) do
 
-  create_table "friends", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "friends", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
-    t.index ["friend_id"], name: "fk_rails_56804a6ce7", using: :btree
     t.index ["user_id"], name: "index_friends_on_user_id", using: :btree
   end
 
-  create_table "group_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "group_members", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at", null: false
@@ -28,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170329141908) do
     t.index ["user_id"], name: "index_group_members_on_user_id", using: :btree
   end
 
-  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.integer  "users_id"
     t.datetime "created_at", null: false
@@ -36,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170329141908) do
     t.index ["users_id"], name: "index_groups_on_users_id", using: :btree
   end
 
-  create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "order_details", force: :cascade do |t|
     t.string   "item"
     t.integer  "amount"
     t.string   "comment"
@@ -49,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170329141908) do
     t.index ["user_id"], name: "index_order_details_on_user_id", using: :btree
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orders", force: :cascade do |t|
     t.string   "orderT"
     t.string   "resName"
     t.string   "menu"
@@ -59,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170329141908) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password"
     t.string   "email"
