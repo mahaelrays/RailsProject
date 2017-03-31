@@ -13,9 +13,9 @@ default: &default
   adapter: postgresql
   encoding: utf8
   pool: 5
-  username: 
-  password: 
-  socket: /var/run/mysqld/mysqld.sock
+  username:
+  password:
+  socket: "/var/run/postgresql/.s.PGSQL.5432"
 
 development:
   <<: *default
