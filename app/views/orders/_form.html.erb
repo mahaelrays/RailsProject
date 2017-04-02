@@ -1,0 +1,48 @@
+<%= form_for(order) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :order_for%>
+    <%= f.select(:orderT) do %>
+      <% [['breakfast', 1], ['lunch', 2]].each do |c| %>
+        <%= content_tag(:option, c.first, value: c.last) %>
+
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="field">
+  write the restrant name
+    <%= f.label :From %>
+    <%= f.text_field :resName %>
+  </div>
+
+  <div class="field">
+    you can write Friends name or group
+    <%= f.label :Friends %>
+    <%= text_field_tag(:q) %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :Image_menu %>
+    <%= f.file_field :menu %>
+  
+  </div>
+
+  <%= f.hidden_field :user_id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
