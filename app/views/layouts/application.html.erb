@@ -57,7 +57,7 @@
 
 
                 <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li>
-                <li><a href="#">Maha Elrays</a></li>
+                <li><a href="#"><%= current_user.name %></a></li>
                 <% if user_signed_in? %>
                 <li><%= link_to 'logout', destroy_user_session_path ,method: :delete %></li>
                 <% end %>
