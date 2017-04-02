@@ -134,7 +134,7 @@ GEM
     orm_adapter (0.5.0)
     pg (0.20.0)
     public_suffix (2.0.5)
->>>>>>> ae93ca19b0fab9a0984f6225c33eaa77463551df
+
     puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
