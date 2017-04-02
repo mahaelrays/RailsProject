@@ -24,7 +24,12 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+    # @user = User.find(params[:friend_id])
+  # for friendship in @user.friendships
+  #  friendship.friend.username
+  @friendship = Friendship.new(friendship_params)
+
+    # @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
   if @friendship.save
     flash[:notice] = "Added friend."
     redirect_to root_url
