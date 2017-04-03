@@ -42,7 +42,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem 'pg'
-gem 'groupify'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
