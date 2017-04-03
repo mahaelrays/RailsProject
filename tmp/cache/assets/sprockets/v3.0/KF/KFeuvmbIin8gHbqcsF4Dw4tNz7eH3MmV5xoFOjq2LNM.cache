@@ -1,0 +1,9 @@
+I"Ò(function() {
+  App.notifications = App.cable.subscriptions.create("NotificationsChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {}
+  });
+
+}).call(this);
+:ET
