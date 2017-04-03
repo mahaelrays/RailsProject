@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  groupify :group_member
+  groupify :named_group_member
 
 has_many :friendships
 has_many :friends, :through => :friendships

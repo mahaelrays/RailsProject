@@ -42,6 +42,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem 'pg'
+gem 'groupify'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
