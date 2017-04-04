@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :groups
+  resources :mygroups
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
  resources :friendships
