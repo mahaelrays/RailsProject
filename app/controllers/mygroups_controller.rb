@@ -9,6 +9,13 @@ class MygroupsController < ApplicationController
      @mygroups = Mygroup.all
     # @mygroup = current_user.mygroups.build
   end
+  def show
+    @mygroup=Mygroup.new
+     @mygroups = Mygroup.all
+    @usergroup=GroupMember.all
+    @users=User.all
+
+  end
   def new
     @mygroup=Mygroup.new
   end
@@ -51,11 +58,68 @@ class MygroupsController < ApplicationController
     end
   end
 
+  def show_users
+
+    @usersIds= GroupMember.where(group_id: params[:id]).map { |e| e.user_id }
+    respond_with User.where(id: @usersIds)
+
+  end
+
+  # GET /groups/new
+  def new_member
+    @email = params[:user][:email]
+    @group_id=params[:group_id]
+    @mygroup = Mygroup.find(params[:id])
+    if @email !=""
+     @user = User.find_by_email(@email)
+      if @user != nil
+       if current_user != @user.id
+            @userfound = GroupMember.where(:user_id => @user.id , :mygroup_id => @mygroup.id)
+            if @userfound.exists? == false
+                @GroupMember = GroupMember.new(
+                mygroup_id: @mygroup.id,
+                user_id: @user.id )
+              if @GroupMember.save
+                redirect_to  mygroup_path
+
+
+              end
+
+                  redirect_to  mygroup_path
+            end
+
+       else
+
+          redirect_to  mygroup_path
+       end
+     else
+
+      redirect_to  mygroup_path
+     end
+   else
+
+    redirect_to mygroup_path
+ end
+
+end
+
+  # GET /groups/1/edit
+  def delete_member
+    @GroupMember = GroupMember.find(params[:id])
+    @GroupMember.destroy
+    respond_to do |format|
+      format.html { redirect_to mygroups_url, notice: 'Group member was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mygroup
-      @mygroup = Mygroup.find(params[:id])
-        # @group = Mygroup.where(id: params[:id]).take
+      #@mygroup = Mygroup.find(params[:id])
+        @group = Mygroup.where(id: params[:id]).take
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
