@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  groupify :group_member
-  groupify :named_group_member
+  acts_as_followable
+   acts_as_follower
+   has_many :mygroups
+
 
 has_many :friendships
 has_many :friends, :through => :friendships

@@ -6,6 +6,7 @@ class FriendshipsController < ApplicationController
      @users = User.all
   end
 
+
   def create
   @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
   if @friendship.save
@@ -26,9 +27,9 @@ end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_friendship
-    #   @friendship = Friendship.find(params[:id])
-    # end
+    def set_friendship
+      @friendship = Friendship.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def friendship_params

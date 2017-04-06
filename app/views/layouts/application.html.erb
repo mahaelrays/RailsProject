@@ -34,16 +34,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+
         <li><%= link_to 'Home', home_index_path%></li>
-        <li><a href="#">Friends</a></li>
-        <li><a href="#">Group</a></li>
+        <li><a href="users">Friends</a></li>
+        <li><a href="mygroups">Group</a></li>
         <li class="active"><a href="#">Orders <span class="sr-only">(current)</span></a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
 
-                <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li>
+                <!-- <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li> -->
+                <li><li>
+
                 <li><a href="#"><%= current_user.name %></a></li>
                 <% if user_signed_in? %>
                 <li><%= link_to 'logout', destroy_user_session_path ,method: :delete %></li>

@@ -5,7 +5,24 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-  
+    @user=current_user
+
+  end
+  def addfriend
+    @email = params[:user][:email]
+    @user = User.find_by_email(params[:user]["email"])
+
+    #byebug
+    @friend_id= @user.id
+    @friendship = current_user.friendships.build(:friend_id => @friend_id)
+    if @friendship.save
+      flash[:notice] = "Added friend."
+      redirect_to current_user
+    else
+      flash[:notice] = "Unable to add friend."
+      redirect_to current_user
+    end
+
   end
 
   # GET /users/1
