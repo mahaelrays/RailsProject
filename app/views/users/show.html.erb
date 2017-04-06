@@ -1,3 +1,4 @@
+<div class="bodyc">
 <div style="margin-left:70px;">
 <h1 class="text-warning">Show User</h1>
 
@@ -41,7 +42,7 @@
 
 
 
-<h2 class="text-warning">Users Who Have Befriended You</h2>
+<h2 class="text-warning">Users added you </h2>
 <ul>
   <% for befrinded in @user.inverse_friends %>
   <li><%= h befrinded.name %></li>

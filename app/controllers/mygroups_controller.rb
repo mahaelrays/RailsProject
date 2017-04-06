@@ -13,6 +13,7 @@ class MygroupsController < ApplicationController
      @mygroups = Mygroup.all
     @usergroup=GroupMember.all
     @users=User.all
+    @selectedgroup=Mygroup.find(params[:id])
 
   end
   def new
@@ -67,6 +68,7 @@ class MygroupsController < ApplicationController
 
   # GET /groups/new
   def new_member
+
     @email = params[:user][:email]
     @group_id=params[:group_id]
     @mygroup = Mygroup.find(params[:id])
@@ -84,6 +86,7 @@ class MygroupsController < ApplicationController
             end
        end
      end
+
  end
  redirect_to mygroup_url
 

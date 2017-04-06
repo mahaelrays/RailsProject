@@ -1,5 +1,6 @@
-
+<div class="bodyc">
   <h1>Groups</h1>
+  <div style="margin-left:60px;">
 
       <div id="group-form" >
       <%= form_for(@mygroup) do |f| %>
@@ -19,6 +20,7 @@
         </div>
       <% end %>
   </div>
+</div>
 
 <br/>
 <div style="width:30%;float: left;">
@@ -41,7 +43,10 @@
           </div>
 
 
-                  <div style="width:60%; float: right; margin:50px;">
+
+
+                  <div style="width:60%; float:right; ">
+                      <h3><%= @selectedgroup.name  %></h3>
                     <%= form_for User.new, url: new_member_mygroup_path do |f| %>
                       <div class="col-md-8">
                         <div class="form-group">
@@ -55,7 +60,7 @@
                           <%= f.submit "Add",:class=>"btn btn-success" %>
                       </div>
                     <% end %>
-                  </div>
+
                   <br>
 
             <div >
@@ -65,7 +70,7 @@
 
                   <% if user.mygroup_id == @group.id %>
                     <% @users.each do |username| %>
-                      <!-- <% if username.id == user.user_id %> -->
+                  
                         <div class="col-md-2">
                           <div class="container">
                             <h4><%= username.name %></h4>
@@ -76,10 +81,11 @@
                             <% end %></span><p></p>
                           </div>
                         </div>
+                          </div>
 
-                      <!-- <%end %> -->
                     <%end %>
                   <% end %>
                 <% end %>
               </div>
             </div>
+            <div>
