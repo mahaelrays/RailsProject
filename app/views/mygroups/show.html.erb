@@ -15,13 +15,13 @@
 
 
         <div class="actions">
-          <%= f.submit %>
+          <%= f.submit "Add", class: 'btn btn-success' %>
         </div>
       <% end %>
   </div>
 
 <br/>
-
+<div style="width:30%;float: left;">
             <table class="table">
               <caption><h2>My Groups</h2></caption>
               <tbody>
@@ -30,17 +30,18 @@
                   <tr>
                     <td><%= mygroup.name %></td>
 
-                    <td><%= link_to 'Show', mygroup %></td>
-                    <td><%= link_to 'Edit', edit_mygroup_path(mygroup) %></td>
-                    <td><%= link_to 'Destroy', mygroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Show', mygroup ,:class=> 'btn btn-primary' %></td>
+                    <td><%= link_to 'Edit', edit_mygroup_path(mygroup) ,:class=> 'btn btn-primary'%></td>
+                    <td><%= link_to 'Destroy', mygroup, method: :delete,:class=> 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
                   <% end %>
               </tbody>
             </table>
+          </div>
 
 
-                  <div >
+                  <div style="width:60%; float: right; margin:50px;">
                     <%= form_for User.new, url: new_member_mygroup_path do |f| %>
                       <div class="col-md-8">
                         <div class="form-group">
@@ -51,17 +52,17 @@
                         </div>
                       </div>
                       <div class="col-md-3">
-                          <%= f.submit "Add", class: 'btn btn-primary' %>
+                          <%= f.submit "Add",:class=>"btn btn-success" %>
                       </div>
                     <% end %>
                   </div>
+                  <br>
 
-            <div class="container">
-              <h2>Friends Member</h2>
+            <div >
               <br/>
               <div class="row">
                 <% @usergroup.each do |user| %>
-                <!-- <%= user.user_id %> -->
+
                   <% if user.mygroup_id == @group.id %>
                     <% @users.each do |username| %>
                       <!-- <% if username.id == user.user_id %> -->
@@ -69,7 +70,7 @@
                           <div class="container">
                             <h4><%= username.name %></h4>
                             <span id="follow_user<%=user.id%>">
-                            <%= link_to(delete_member_mygroup_path(user.id), :method => :delete , data: { confirm: 'Are you sure?' }) do %>
+                            <%= link_to(delete_member_mygroup_path(user.id), :method => :delete, :class=> 'btn btn-danger', data: { confirm: 'Are you sure?' }) do %>
                               <i class="icon-remove icon-white"></i>
                               Delete
                             <% end %></span><p></p>

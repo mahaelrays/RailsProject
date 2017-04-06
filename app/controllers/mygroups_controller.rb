@@ -5,9 +5,8 @@ class MygroupsController < ApplicationController
   # GET /mygroups.json
   def index
     @mygroup=Mygroup.new
-    #  @mygroup = Mygroup.all
      @mygroups = Mygroup.all
-    # @mygroup = current_user.mygroups.build
+
   end
   def show
     @mygroup=Mygroup.new
@@ -80,26 +79,12 @@ class MygroupsController < ApplicationController
                 mygroup_id: @mygroup.id,
                 user_id: @user.id )
               if @GroupMember.save
-                redirect_to  mygroup_path
-
-
               end
-
-                  redirect_to  mygroup_path
             end
-
-       else
-
-          redirect_to  mygroup_path
        end
-     else
-
-      redirect_to  mygroup_path
      end
-   else
-
-    redirect_to mygroup_path
  end
+ redirect_to mygroup_url
 
 end
 

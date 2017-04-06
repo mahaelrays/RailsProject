@@ -14,7 +14,7 @@
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add", class: 'btn btn-success' %>
   </div>
 <% end %>
 
@@ -33,9 +33,9 @@
       <tr>
         <td><%= mygroup.name %></td>
 
-        <td><%= link_to 'Show', mygroup %></td>
-        <td><%= link_to 'Edit', edit_mygroup_path(mygroup) %></td>
-        <td><%= link_to 'Destroy', mygroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', mygroup ,:class=> 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_mygroup_path(mygroup) ,:class=> 'btn btn-primary'%></td>
+        <td><%= link_to 'Destroy', mygroup, method: :delete,:class=> 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
       <% end %>
