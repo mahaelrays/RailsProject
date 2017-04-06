@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def addfriend
     @email = params[:user][:email]
     @user = User.find_by_email(params[:user]["email"])
-
+    if current_user!=@user
     #byebug
     @friend_id= @user.id
     @friendship = current_user.friendships.build(:friend_id => @friend_id)
@@ -22,6 +22,11 @@ class UsersController < ApplicationController
       flash[:notice] = "Unable to add friend."
       redirect_to current_user
     end
+  else
+    flash[:notice] = "Unable to add friend."
+    redirect_to current_user
+    end
+
 
   end
 

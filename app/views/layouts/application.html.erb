@@ -8,6 +8,32 @@
     <script src="js/bootstrap1.min.js"></script> -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+    body
+    {
+      background-image: url('<%=image_path("food.jpg")%>');
+
+    }
+    .bodyc
+    {
+      background-color: white;
+      width: 70%;
+      height:550px;
+      margin-left:150px;
+      overflow: scroll;
+
+    }
+    .login
+    {
+      background-image: url('<%=image_path("login.jpg")%>');
+      width: 100%;
+      height: 100%;
+    }
+    .fontcolor
+    {
+      color: pink;
+    }
+    </style>
 
   </head>
 
@@ -57,7 +83,7 @@
 
 
                 <!-- <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li> -->
-                <li><img src="<%image_path("logooo.png")%>" class="img-circle" style="width: 35px; height: 48px;"><li>
+                <li><img src="<%= image_path('avtar.png')%>"class="img-circle" style="width: 35px; height: 48px;"><li>
 
                 <li><a href="#"><%= current_user.name %></a></li>
                 <% if user_signed_in? %>

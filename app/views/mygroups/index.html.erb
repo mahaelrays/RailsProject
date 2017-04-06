@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="bodyc">
 
 <h1>Mygroups</h1>
 <%= form_for(@mygroup) do |f| %>
@@ -31,7 +32,7 @@
     <% @mygroups.each do |mygroup| %>
     <% if mygroup.user_id == current_user.id %>
       <tr>
-        <td><%= mygroup.name %></td>
+        <td><h3><%= mygroup.name %></h3</td>
 
         <td><%= link_to 'Show', mygroup ,:class=> 'btn btn-primary' %></td>
         <td><%= link_to 'Edit', edit_mygroup_path(mygroup) ,:class=> 'btn btn-primary'%></td>
@@ -41,6 +42,7 @@
       <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
