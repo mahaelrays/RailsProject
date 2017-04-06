@@ -50,6 +50,7 @@ class MygroupsController < ApplicationController
 
 
   def destroy
+     @mygroup = Mygroup.find(params[:id])
     @mygroup.destroy
     respond_to do |format|
       format.html { redirect_to mygroups_url, notice: 'Mygroup was successfully destroyed.' }
@@ -91,11 +92,17 @@ end
   # GET /groups/1/edit
   def delete_member
     @GroupMember = GroupMember.find(params[:id])
-    @GroupMember.destroy
-    respond_to do |format|
-      format.html { redirect_to mygroups_url, notice: 'Group member was successfully destroyed.' }
-      format.json { head :no_content }
+    if @GroupMember.destroy
+      flash[:notice] = "Group member was successfully destroyed"
+      redirect_to mygroups_url
+    else
+      flash[:notice] = "Unable to remove member."
+      redirect_to mygroups_url
     end
+    # respond_to do |format|
+    #   format.html { redirect_to mygroup_url, notice: 'Group member was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
 
   end
 

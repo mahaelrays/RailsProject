@@ -1,4 +1,17 @@
+<%= form_for @user, url:  user_addfriend_path(@user),method: :post do |f| %>
+  <div class="col-md-8">
+    <div class="form-group">
+      <%= f.text_field :email, class: "form-control", placeholder: "Enter email here" %>
+    </div>
+    <div class="field">
 
+    </div>
+  </div>
+  <div class="col-md-3">
+      <%= f.submit "Add",:class=>"btn btn-success" %>
+  </div>
+<% end %>
+<br/><br/>
 
 <h1>List All Users</h1>
 
