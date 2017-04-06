@@ -10,51 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403025641) do
+ActiveRecord::Schema.define(version: 20170403190900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "friends", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
-    t.index ["user_id"], name: "index_friends_on_user_id", using: :btree
-  end
-
-  create_table "group_members", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "group_id"
+    t.integer  "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_members_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_group_members_on_user_id", using: :btree
+  end
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.string   "member_type",     null: false
+    t.integer  "member_id",       null: false
+    t.string   "group_type"
+    t.integer  "group_id"
+    t.string   "group_name"
+    t.string   "membership_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["group_name"], name: "index_group_memberships_on_group_name", using: :btree
+    t.index ["group_type", "group_id"], name: "index_group_memberships_on_group_type_and_group_id", using: :btree
+    t.index ["member_type", "member_id"], name: "index_group_memberships_on_member_type_and_member_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "users_id"
+    t.string "name"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "item"
+    t.integer  "amount"
+    t.integer  "price"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_groups_on_users_id", using: :btree
+    t.index ["order_id"], name: "index_items_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
   end
 
   create_table "notifications", force: :cascade do |t|
     t.string   "event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "order_details", force: :cascade do |t|
-    t.string   "item"
-    t.integer  "amount"
-    t.string   "comment"
-    t.integer  "price"
-    t.integer  "order_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
-    t.index ["user_id"], name: "index_order_details_on_user_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -88,12 +90,7 @@ ActiveRecord::Schema.define(version: 20170403025641) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "friends", "users"
-  add_foreign_key "friends", "users", column: "friend_id"
-  add_foreign_key "group_members", "groups"
-  add_foreign_key "group_members", "users"
-  add_foreign_key "groups", "users", column: "users_id"
-  add_foreign_key "order_details", "orders"
-  add_foreign_key "order_details", "users"
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "users"
   add_foreign_key "orders", "users"
 end

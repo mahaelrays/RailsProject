@@ -12,35 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :order_for%>
-    <%= f.select(:orderT) do %>
-      <% [['breakfast', 1], ['lunch', 2]].each do |c| %>
-        <%= content_tag(:option, c.first, value: c.last) %>
-
-      <% end %>
-    <% end %>
+    <%= f.label :orderT %>
+    <%= f.text_field :orderT %>
   </div>
 
   <div class="field">
-  write the restrant name
-    <%= f.label :From %>
+    <%= f.label :resName %>
     <%= f.text_field :resName %>
   </div>
 
   <div class="field">
-    you can write Friends name or group
-    <%= f.label :Friends %>
-    <%= text_field_tag(:q) %>
-
+    <%= f.label :menu %>
+    <%= f.text_field :menu %>
   </div>
 
   <div class="field">
-    <%= f.label :Image_menu %>
-    <%= f.file_field :menu %>
-  
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
   </div>
-
-  <%= f.hidden_field :user_id %>
 
   <div class="actions">
     <%= f.submit %>

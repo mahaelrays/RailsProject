@@ -1,0 +1,80 @@
+<h1>List All Friends</h1>
+
+
+<%= form_tag users_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+<%= text_field_tag :query, params[:query], class: 'form-control mr-sm-2 typeahead', id: "typeahead"%>
+  <%= submit_tag 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
+<% end %>
+
+
+
+
+<br>
+<h3><%= @user.name%>'s Friends</h3>
+<ul>
+  <% for friendship in @user.friendships %>
+  <li>
+    <%= h friendship.friend.name %>
+    (<%= link_to "remove", friendship, :method => :delete %>)
+  </li>
+  <% end %>
+</ul>
+
+
+<h3>Users Who Have Befriended "<%=@user.name%>"</h3>
+<ul>
+  <% for befrinded in @user.inverse_friends %>
+  <li><%= h befrinded.name %></li>
+  <% end %>
+</ul>
+
+<p>
+  <%= link_to "Find Friends", users_path %>
+</p>
+<!-- <h1>List All Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th>Name</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user, i| %>
+      <tr>
+
+        <td><%= user.name %></td>
+
+        <% friend_status = current_user.friendships.exists?(:friend_id =>user.id, :user_id => current_user.id)  ? true : false %>
+        <% if(friend_status) %>
+        <% friendship_id = current_user.friendships.where("friend_id = ? AND user_id = ?", user.id, current_user.id).first.id %>
+          <td >
+    <%= link_to "Remove Friend", friendship_path(friendship_id), :method => :delete %></td>
+
+        <% elsif(current_user.id==user.id) %>
+          <td class="table-success">You</td>
+        <% else %>
+          <td class="table-info"><%= link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post %></td>
+        <% end %>
+
+        <% if(current_user.id==user.id) %>
+        <td class="table-warning"><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td class="table-success"></td>
+        <% else %>
+        <td class="table-danger"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+<br> -->

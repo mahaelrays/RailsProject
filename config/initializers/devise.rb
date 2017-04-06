@@ -45,8 +45,8 @@ Devise.setup do |config|
     config.omniauth :facebook, "1833501496910005","b7fc544ce619c3fd56d9a8f7a39b3415"
 
     require 'omniauth-google-oauth2'
-    config.omniauth :google_oauth2, " 585158076588-52p6eeuoufbhjkeu4igqf5a56sq3oede.apps.googleusercontent.com ",
-                              " BE5HAbk3Tv1DGoHH8TnSNDms "
+    config.omniauth :google_oauth2, "585158076588-52p6eeuoufbhjkeu4igqf5a56sq3oede.apps.googleusercontent.com",
+                              "BE5HAbk3Tv1DGoHH8TnSNDms"
     # config.omniauth :google, " 585158076588-52p6eeuoufbhjkeu4igqf5a56sq3oede.apps.googleusercontent.com ",
     #                           " BE5HAbk3Tv1DGoHH8TnSNDms "
 

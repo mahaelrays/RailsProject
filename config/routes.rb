@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+
+  get 'home/index'
+
+  resources :items
+  resources :orders
   get 'notifications/index'
 
+
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
-  resources :order_details
-  resources :group_members
-  resources :friends
-  resources :orders
-  resources :groups
+
+ resources :friendships
   resources :users
 
   root 'users#index'
