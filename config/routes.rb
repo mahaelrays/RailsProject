@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+
+  resources :order_details
+  resources :orders
+  get 'home/index'
+
+  get 'notifications/index'
   resources :mygroups do
       member do
         post :new_member
@@ -25,5 +31,6 @@ Rails.application.routes.draw do
   end
 
   root 'users#index'
+  mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

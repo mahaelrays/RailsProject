@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404030016) do
+ActiveRecord::Schema.define(version: 20170406180141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,36 @@ ActiveRecord::Schema.define(version: 20170404030016) do
     t.index ["user_id"], name: "index_mygroups_on_user_id", using: :btree
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "event"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "order_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.string   "item"
+    t.integer  "amount"
+    t.float    "price"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_order_details_on_user_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "orderT"
+    t.string   "resName"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password"
@@ -93,4 +123,7 @@ ActiveRecord::Schema.define(version: 20170404030016) do
   add_foreign_key "group_members", "mygroups"
   add_foreign_key "group_members", "users"
   add_foreign_key "mygroups", "users"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "users"
+  add_foreign_key "orders", "users"
 end

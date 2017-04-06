@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orderT: MyString
+  resName: MyString
+  user: one
+
+two:
+  orderT: MyString
+  resName: MyString
+  user: two

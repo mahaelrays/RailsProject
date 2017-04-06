@@ -11,38 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :order_for%>
-    <%= f.select(:orderT) do %>
-      <% [['breakfast', 1], ['lunch', 2]].each do |c| %>
+  <%= f.hidden_field :user_id %>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th><%= f.label :orderT ,'Order for'%></th>
+        <td><%= f.select(:orderT) do %>
+      <% [['breakfast', 'breakfast'], ['lunch', 'lunch']].each do |c| %>
         <%= content_tag(:option, c.first, value: c.last) %>
 
       <% end %>
-    <% end %>
-  </div>
-
-  <div class="field">
-  write the restrant name
-    <%= f.label :From %>
-    <%= f.text_field :resName %>
-  </div>
-
-  <div class="field">
-    you can write Friends name or group
-    <%= f.label :Friends %>
-    <%= text_field_tag(:q) %>
-
-  </div>
-
-  <div class="field">
-    <%= f.label :Image_menu %>
-    <%= f.file_field :menu %>
-  
-  </div>
-
-  <%= f.hidden_field :user_id %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% end %></td>
+      </tr>
+      <tr>
+        <td colspan="2">Write the restrant name</td>
+      </tr>
+      <tr>
+        <td>  <%= f.label :resName ,'From'%></td>
+        <td><%= f.text_field :resName %></td>
+      </tr>
+      <tr>
+        <td colspan="2">you can write friend name or group</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+              <%=f.input :invited_users do%>
+                  <% current_user.friendships.each do |f| %>
+                      <%= check_box_tag 'invited_users[]', f.id %>
+                      <%= h f.name%>
+                  <%end%>
+              <%end%>
+          </div>
+          <div class="field">
+              <%=f.input :invited_groups do%>
+                  <% current_user.groups.each do |g| %>
+                      <%= check_box_tag 'invited_groups[]', g.id %>
+                      <%= h g.name%>
+                  <%end%>
+              <%end%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <%= f.submit ,'Publish' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
