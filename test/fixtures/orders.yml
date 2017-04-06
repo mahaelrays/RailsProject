@@ -3,11 +3,9 @@
 one:
   orderT: MyString
   resName: MyString
-  menu: MyString
   user: one
 
 two:
   orderT: MyString
   resName: MyString
-  menu: MyString
   user: two

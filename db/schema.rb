@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406164127) do
+ActiveRecord::Schema.define(version: 20170406180141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170406164127) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mygroup_id"], name: "index_group_members_on_mygroup_id", using: :btree
+    t.index ["mygroup_id"], name: "index_group_members_on_group_id", using: :btree
     t.index ["user_id"], name: "index_group_members_on_user_id", using: :btree
   end
 
@@ -61,19 +61,6 @@ ActiveRecord::Schema.define(version: 20170406164127) do
     t.string "name"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string   "item"
-    t.integer  "amount"
-    t.integer  "price"
-    t.string   "comment"
-    t.integer  "user_id"
-    t.integer  "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_items_on_order_id", using: :btree
-    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
-  end
-
   create_table "mygroups", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -90,10 +77,22 @@ ActiveRecord::Schema.define(version: 20170406164127) do
     t.integer  "order_id"
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.string   "item"
+    t.integer  "amount"
+    t.float    "price"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_order_details_on_user_id", using: :btree
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string   "orderT"
     t.string   "resName"
-    t.string   "menu"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -123,8 +122,8 @@ ActiveRecord::Schema.define(version: 20170406164127) do
 
   add_foreign_key "group_members", "mygroups"
   add_foreign_key "group_members", "users"
-  add_foreign_key "items", "orders"
-  add_foreign_key "items", "users"
   add_foreign_key "mygroups", "users"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "users"
   add_foreign_key "orders", "users"
 end

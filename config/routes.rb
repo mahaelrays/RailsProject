@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
+  resources :order_details
+  resources :orders
   get 'home/index'
 
-  resources :items
-  resources :orders
   get 'notifications/index'
   resources :mygroups do
       member do

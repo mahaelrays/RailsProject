@@ -11,27 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :orderT %>
-    <%= f.text_field :orderT %>
-  </div>
+  <%= f.hidden_field :user_id %>
 
-  <div class="field">
-    <%= f.label :resName %>
-    <%= f.text_field :resName %>
-  </div>
 
-  <div class="field">
-    <%= f.label :menu %>
-    <%= f.text_field :menu %>
-  </div>
+  <table>
+    <tbody>
+      <tr>
+        <th><%= f.label :orderT ,'Order for'%></th>
+        <td><%= f.select(:orderT) do %>
+      <% [['breakfast', 'breakfast'], ['lunch', 'lunch']].each do |c| %>
+        <%= content_tag(:option, c.first, value: c.last) %>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <% end %>
+    <% end %></td>
+      </tr>
+      <tr>
+        <td colspan="2">Write the restrant name</td>
+      </tr>
+      <tr>
+        <td>  <%= f.label :resName ,'From'%></td>
+        <td><%= f.text_field :resName %></td>
+      </tr>
+      <tr>
+        <td colspan="2">you can write friend name or group</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+              <%=f.input :invited_users do%>
+                  <% current_user.friendships.each do |f| %>
+                      <%= check_box_tag 'invited_users[]', f.id %>
+                      <%= h f.name%>
+                  <%end%>
+              <%end%>
+          </div>
+          <div class="field">
+              <%=f.input :invited_groups do%>
+                  <% current_user.groups.each do |g| %>
+                      <%= check_box_tag 'invited_groups[]', g.id %>
+                      <%= h g.name%>
+                  <%end%>
+              <%end%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <%= f.submit ,'Publish' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
