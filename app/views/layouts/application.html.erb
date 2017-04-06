@@ -45,7 +45,8 @@
 
 
                 <!-- <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li> -->
-                <li><li>
+                <li><%= render "notifications/notification_center", notifications: @notifications %>
+<li>
 
                 <li><a href="#"><%= current_user.name %></a></li>
                 <% if user_signed_in? %>
