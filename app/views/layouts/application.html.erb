@@ -73,9 +73,9 @@
 
                 <!-- <li><img src="/images/logooo.png" class="img-circle" style="width: 35px; height: 48px;"><li> -->
 
-                <li><img src="<%= image_path('avtar.png')%>"class="img-circle" style="width: 35px; height: 48px;"><li>
+                <li><%= render "notifications/notification_center", notifications: @notifications %>
+<li>
 
-                <li><li>
 
 
                 <li><a href="#"><%= current_user.name %></a></li>
