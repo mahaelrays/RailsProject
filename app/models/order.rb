@@ -10,5 +10,5 @@ class Order < ApplicationRecord
   has_attached_file :menu,
                     styles: { medium: '200x200>', thumb: '100x100>' },
                     default_url: '/images/:style/missing.png'
-  validates_attachment_content_type :menu_img, content_type: %r{\Aimage\/.*\z}
+  validates_attachment_content_type :menu, content_type: %r{\Aimage\/.*\z}
 end

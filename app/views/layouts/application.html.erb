@@ -62,8 +62,9 @@
       <ul class="nav navbar-nav">
 
         <li><%= link_to 'Home', home_index_path%></li>
-        <li><a href="users">Friends</a></li>
-        <li><a href="mygroups">Group</a></li>
+        <li><%= link_to 'Friends', users_path%></li>
+        <li><%= link_to 'Groups', mygroups_path%></li>
+
         <li class="active"><a href="#orders">Orders <span class="sr-only">(current)</span></a></li>
 
       </ul>
