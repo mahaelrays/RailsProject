@@ -47,7 +47,7 @@
 
                   <div style="width:60%; float:right; ">
                       <h3><%= @selectedgroup.name  %></h3>
-                    <%= form_for User.new, url: new_member_mygroup_path do |f| %>
+                    <%= form_for @user, url: new_member_mygroup_path ,method: :post do |f| %>
                       <div class="col-md-8">
                         <div class="form-group">
                           <%= f.text_field :email, class: "form-control", placeholder: "Enter email here" %>
@@ -70,7 +70,7 @@
 
                   <% if user.mygroup_id == @group.id %>
                     <% @users.each do |username| %>
-                  
+
                         <div class="col-md-2">
                           <div class="container">
                             <h4><%= username.name %></h4>
