@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
 
   resources :order_details
-  resources :orders
+  resources :orders 
+
   get 'home/index'
 
   get 'notifications/index'

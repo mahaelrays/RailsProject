@@ -1,3 +1,4 @@
+<div class="bodyc">
 <p id="notice"><%= notice %></p>
 
 <h1>Orders</h1>
@@ -17,7 +18,7 @@
       <tr>
         <td><%= order.orderT %></td>
         <td><%= order.resName %></td>
-        <td><%= order.user %></td>
+        <td><%= order.user_id %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

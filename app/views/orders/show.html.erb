@@ -1,14 +1,18 @@
+<div class="bodyc">
 <p id="notice"><%= notice %></p>
 
 <table class="table table-striped table-bordered">
   <tr>
-    <th colspan="2">Name</th>
-    <th colspan="2">Menu</th>
+    <th >Name</th>
+    <th >order</th>
+    <th >restrant</th>
+    <th >Menu</th>
   </tr>
   <tr>
-    <td colspan="2"><%= @order.user.name %></td>
-    <td><%= @order.id %></td>
-    <td colspan="2"><%= image_tag @order.menu_img.url(:thumb) %></td>
+    <td ><%= @order.user.name%></td>
+    <td><%= @order.orderT%></td>
+    <td><%= @order.resName%></td>
+    <td ><%= image_tag @order.image.url(:thumb) %></td>
   </tr>
 </table>
 
