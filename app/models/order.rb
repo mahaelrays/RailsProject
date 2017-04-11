@@ -7,8 +7,6 @@ class Order < ApplicationRecord
   has_and_belongs_to_many :invited_users, class_name: 'User',
                                           foreign_key: 'order_id',
                                           join_table: :invitees_orders
-  has_attached_file :menu,
-                    styles: { medium: '200x200>', thumb: '100x100>' },
-                    default_url: '/images/:style/missing.png'
-  validates_attachment_content_type :menu, content_type: %r{\Aimage\/.*\z}
+  has_attached_file :image, styles: { large:"600x600>" ,medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

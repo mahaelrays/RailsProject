@@ -18,7 +18,7 @@ default: &default
 development:
   <<: *default
   database: yalanotlob_development
-  username: postgres
+  username: fardous
   password: iti
   host: localhost
 # Warning: The database defined as "test" will be erased and
@@ -54,6 +54,8 @@ production:
   password: <%= ENV['YALANOTLOB_DATABASE_PASSWORD'] %>
 default: &default
   adapter: postgresql
+  username: fardous
+  password: iti
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") {5} %>
 
@@ -61,7 +63,7 @@ default: &default
 development:
   <<: *default
   database: yalanotlob_development
-  username: postgres
+  username: fardous
   password: iti
   host: localhost
 # Warning: The database defined as "test" will be erased and
