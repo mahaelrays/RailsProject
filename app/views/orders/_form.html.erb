@@ -45,6 +45,31 @@
       <div class="field">
         <%= f.hidden_field :user_id, :value => current_user.id %>
       </div></td></tr>
+      <tr><td>
+
+        <%= label_tag 'Choose Friends to invite: ' %>
+        <div>
+    <table style="overflow: scroll; height: 100px" class="form-control">
+        <% @users.each do |user, i| %>
+
+
+      <td>
+        <% friend_status = current_user.friendships.exists?(:friend_id =>user.id, :user_id => current_user.id)  ? true : false %>
+        <% if(friend_status) %>
+          <%= check_box_tag('invited_friends[]', user.id) %>
+          <%= label_tag(:invited_friends, user.name) %>
+          <% end %>
+      <td>
+
+
+      <% end %>
+    </table>
+
+  </div>
+
+         <!-- <%= f.collection_select :user_id, Friendship.order(:friend_id), :id, :friend_id, include_blank: true %> -->
+       </td>
+      </tr>
 
       <tr>
         <td colspan="2">
