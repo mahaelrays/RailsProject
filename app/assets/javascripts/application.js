@@ -17,4 +17,3 @@
 //= require_tree .
 //= require bootstrap.min
 //= require jquery1.min
-//= require jquery-ui

@@ -20,9 +20,6 @@ gem 'bootstrap-sass', '~> 3.2.0'
 # gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # image
 gem "paperclip", "~> 5.0.0"
-#auto complate
-gem 'jquery-ui-rails'
-
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

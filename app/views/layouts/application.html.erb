@@ -78,6 +78,9 @@
 
 
                 <li><a href="#"><%= current_user.name %></a></li>
+
+              
+
                 <% if user_signed_in? %>
                 <li><%= link_to 'logout', destroy_user_session_path ,method: :delete %></li>
                 <% end %>

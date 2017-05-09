@@ -10,22 +10,15 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-  # @user=User.new
   @user=current_user
-  @friends=@user.friends.all
-  #@friends=Friendship.find_by(user_id:@user.id)
+
   end
 
   # GET /orders/new
   def new
     @order = Order.new
-      @users = User.all
-      @user=current_user
-
-    # @user=current_user
-    # @friends=@user.friends.all
-    #byebug
-
+    @users = User.all
+    @user=current_user
   end
 
   # GET /orders/1/edit
@@ -36,28 +29,32 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     # @order = current_user.orders.build(order_params)
-    # order_params.inspect()
-
-    @order = Order.new(order_params)
+    order_params.inspect()
 
 
-    respond_to do |format|
-      if @order.save
-        @id=@order.id
-        @invited_friends = params[:invited_friends]
-		    @invited_friends.each do |invited_friend_id|
-          @invitmember=OrderMember.new(order_id:@id,user_id:invited_friend_id)
-          @invitmember.save
+        @order = Order.new(order_params)
 
-	  end
 
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+        respond_to do |format|
+          if @order.save
+            @id=@order.id
+            @invited_friends = params[:invited_friends]
+    		    @invited_friends.each do |invited_friend_id|
+              # @invitmember=OrderMember.new(order_id:@id,user_id:invited_friend_id)
+              # @invitmember.save
+              @invitmember=Notification.new(order_id:@id,user_id:invited_friend_id,event:"Notification")
+              @invitmember.save
+
+    	  end
+
+            format.html { redirect_to @order, notice: 'Order was successfully created.' }
+            format.json { render :show, status: :created, location: @order }
+          else
+            format.html { render :new }
+            format.json { render json: @order.errors, status: :unprocessable_entity }
+          end
+        end
+
   end
 
   # PATCH/PUT /orders/1
