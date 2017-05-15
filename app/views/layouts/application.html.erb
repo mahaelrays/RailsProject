@@ -78,8 +78,10 @@
 
 
                 <li><a href="#"><%= current_user.name %></a></li>
+                <li><%= render "notifications/notification_center", notifications: @notifications %>
+</li>
 
-              
+
 
                 <% if user_signed_in? %>
                 <li><%= link_to 'logout', destroy_user_session_path ,method: :delete %></li>

@@ -1,10 +1,12 @@
 class OrderDetailsController < ApplicationController
   before_action :set_order_detail, only: [:show, :edit, :update, :destroy]
+    before_action :set_notification
 
   # GET /order_details
   # GET /order_details.json
   def index
     @order_details = OrderDetail.all
+
   end
 
   # GET /order_details/1
@@ -65,6 +67,9 @@ class OrderDetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order_detail
       @order_detail = OrderDetail.find(params[:id])
+    end
+    def set_notification
+        @notifications=Notification.where(user_id:current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

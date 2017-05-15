@@ -1,11 +1,13 @@
 class MygroupsController < ApplicationController
   before_action :set_mygroup, only: [:show, :edit, :update, :destroy]
+    before_action :set_notification
 
   # GET /mygroups
   # GET /mygroups.json
   def index
     @mygroup=Mygroup.new
      @mygroups = Mygroup.all
+
 
   end
   def show
@@ -117,6 +119,9 @@ end
     def set_mygroup
       #@mygroup = Mygroup.find(params[:id])
         @group = Mygroup.where(id: params[:id]).take
+    end
+    def set_notification
+        @notifications=Notification.where(user_id:current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

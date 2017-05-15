@@ -1,9 +1,12 @@
 class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:show, :edit, :update, :destroy]
+    before_action :set_notification
 
   def index
      @user = User.find(params[:user_id])
      @users = User.all
+     @notifications = Notification.all.reverse
+
   end
 
 
@@ -29,6 +32,9 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_friendship
       @friendship = Friendship.find(params[:id])
+    end
+    def set_notification
+        @notifications=Notification.where(user_id:current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

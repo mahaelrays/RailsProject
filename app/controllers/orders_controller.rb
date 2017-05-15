@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_notification
 
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.all
+
   end
 
   # GET /orders/1
@@ -23,6 +25,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+      @users = User.all
   end
 
   # POST /orders
@@ -38,11 +41,12 @@ class OrdersController < ApplicationController
         respond_to do |format|
           if @order.save
             @id=@order.id
+            @username=current_user.name
             @invited_friends = params[:invited_friends]
     		    @invited_friends.each do |invited_friend_id|
               # @invitmember=OrderMember.new(order_id:@id,user_id:invited_friend_id)
               # @invitmember.save
-              @invitmember=Notification.new(order_id:@id,user_id:invited_friend_id,event:"Notification")
+              @invitmember=Notification.new(order_id:@id,user_id:invited_friend_id,event:"Notification from "+@username)
               @invitmember.save
 
     	  end
@@ -74,6 +78,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
+        @order = Order.find(params[:id])
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
@@ -85,6 +90,9 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+    def set_notification
+        @notifications=Notification.where(user_id:current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

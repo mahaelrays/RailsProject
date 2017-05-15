@@ -19,27 +19,7 @@
 
 
 
-<h2>Add a detail:</h2>
-<%= form_for(@order.order_details.build do |f|%>
-<%= f.hidden_field :user_id, value:@user.id %>
-<%= f.hidden_field  :order_id %>
-<table class="table table-striped table-bordered">
-  <tr>
-    <th> <%= f.label :item %></th>
-    <th> <%= f.label :amount %></th>
-    <th> <%= f.label :price %></th>
-    <th> <%= f.label :comment %></th>
-  </tr>
-  <tr>
-    <td><%= f.text_field :item %></td>
-    <td><%= f.number_field :amount %></td>
-    <td><%= f.text_field :price %></td>
-    <td><%= f.text_area :comment %></td>
-    <td>  <%= f.submit %></td>
-  </tr>
-</table>
 
-<% end) %>
 
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
